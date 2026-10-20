@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "context7": {
+      "enabled": true
+    },
+    "shaders": {
+      "enabled": true
+    },
+    "github": {
+      "enabled": true
+    },
+    "shopping": {
+      "enabled": true
+    },
+    "miro": {
+      "enabled": true
+    },
+    "agent_tools": {
+      "enabled": true
+    }
+  }
+}
