@@ -3,6 +3,7 @@ import { PersonaCard } from "@/components/persona-card"
 import { PricingDialog } from "@/components/ui/pricing-dialog"
 import { CallInterface } from "@/components/call-interface"
 import { EndScreen } from "@/components/end-screen"
+import { ErrorOne } from "@/components/ui/error-1"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Flame, Zap } from "lucide-react"
@@ -57,6 +58,12 @@ export default function App() {
     setActivePersona(null)
     setPhase("select")
   }, [])
+
+  if (phase === "notFound") {
+    return (
+      <ErrorOne />
+    )
+  }
 
   if (phase === "call" && activePersona && activeTier) {
     return (

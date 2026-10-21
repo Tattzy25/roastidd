@@ -1,6 +1,6 @@
 [
   {
-    "id": "taste",
+    "id": "Roast_00200",
     "duration": 120,
     "label": "Just The Tip",
     "sublabel": "90sec base round + 30sec FREE",
@@ -9,10 +9,13 @@
     "description": "You’re broke and scared. Let's make this quick.",
     "modes": ["Solo"],
     "languages": 1,
-    "badge": "Solo"
+    "badge": "Solo",
+    "features": ["Solo", "1 languages", "Camera + mic live roast"],
+    "isPopular": false,
+    "buttonText": "Get Roasted"
   },
   {
-    "id": "standard",
+    "id": "Roast_00300",
     "duration": 300,
     "label": "Daddy Issues",
     "sublabel": "240sec base round + 60sec FREE",
@@ -21,10 +24,13 @@
     "description": "Five minutes to find out why nobody actually likes you.",
     "modes": ["Solo"],
     "languages": 1,
-    "badge": "Solo"
+    "badge": "Solo",
+    "features": ["Solo", "1 languages", "Camera + mic live roast"],
+    "isPopular": false,
+    "buttonText": "Get Roasted"
   },
   {
-    "id": "extended",
+    "id": "Roast_00600",
     "duration": 600,
     "label": "Cry On Camera",
     "sublabel": "420sec base round + 180sec FREE",
@@ -33,10 +39,13 @@
     "description": "Ten minutes straight. You’re gonna stutter and hang up early.",
     "modes": ["Solo"],
     "languages": 1,
-    "badge": "Solo"
+    "badge": "POPULAR",
+    "features": ["POPULAR", "1 languages", "Camera + mic live roast"],
+    "isPopular": true,
+    "buttonText": "Get Roasted"
   },
   {
-    "id": "marathon",
+    "id": "Roast_001200",
     "duration": 1200,
     "label": "Suicidal Ego",
     "sublabel": "900sec base round + 300sec FREE",
@@ -45,30 +54,39 @@
     "description": "20 minutes of pure psychological abuse. Seek help.",
     "modes": ["Solo"],
     "languages": 1,
-    "badge": "Solo"
+    "badge": "Solo",
+    "features": ["Solo", "1 languages", "Camera + mic live roast"],
+    "isPopular": false,
+    "buttonText": "Get Roasted"
   },
   {
-    "id": "duo",
+    "id": "Roast_001500",
     "duration": 1500,
-    "label": "Two Dumb Bitches",
+    "label": "2 Putas",
     "sublabel": "1200sec base round + 300sec FREE",
     "price": 14.99,
     "priceDisplay": "$14.99",
     "description": "Holding hands won't save you. Both of you are getting cooked.",
     "modes": ["2-Person", "Bilingual"],
     "languages": 90,
-    "badge": "2-Person"
+    "badge": "HOTTTT",
+    "features": ["HOTTTT", "90 languages", "Camera + mic live roast"],
+    "isPopular": true,
+    "buttonText": "Get Roasted"
   },
   {
-    "id": "crew",
+    "id": "Roast_001800",
     "duration": 1800,
-    "label": "Bring The Whole Gang",
+    "label": "The Gang",
     "sublabel": "1350sec base round + 450sec FREE",
     "price": 19.99,
     "priceDisplay": "$19.99",
     "description": "Prop the phone up. Every single person in the room gets violated.",
     "modes": ["Crew", "Bilingual"],
     "languages": 90,
-    "badge": "Whole Gang"
+    "badge": "Whole Gang",
+    "features": ["Whole Gang", "90 languages", "Camera + mic live roast"],
+    "isPopular": false,
+    "buttonText": "Get Roasted"
   }
 ]

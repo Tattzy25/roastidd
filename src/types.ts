@@ -22,6 +22,9 @@ export interface PricingTier {
   modes: string[]
   languages: number
   badge: string | null
+  features: string[]
+  isPopular: boolean
+  buttonText: string
 }
 
-export type AppPhase = "loading" | "select" | "call"
+export type AppPhase = "loading" | "select" | "call" | "notFound"

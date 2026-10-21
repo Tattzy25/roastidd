@@ -1,98 +1,122 @@
+import * as React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { FaChevronDown } from "react-icons/fa6";
 
 export interface ApiUsageWidgetProps {
-  title: string
-  durationLabel: string
-  price: string
-  badgeText: string
-  baseRoundLabel: string
-  freeLabel: string
-  description: string
-  features: string[]
-  progressValue: number
-  buttonText?: string
-  onAction?: () => void
-  disabled?: boolean
+  title?: string;
+  limitValue?: string;
+  progressLabel?: string;
+  progressValue?: number;
+  usedLabel?: string;
+  usedValue?: string;
+  remainingLabel?: string;
+  remainingValue?: string;
+  buttonText?: string;
+  onAction?: () => void;
+  planOptions?: string[];
+  defaultPlan?: string;
 }
 
 export function ApiUsageWidget({
-  title,
-  durationLabel,
-  price,
-  badgeText,
-  baseRoundLabel,
-  freeLabel,
-  description,
-  features,
-  progressValue,
-  buttonText = "Get Roasted",
+  title = "Api Requests Quota",
+  limitValue = "100,000",
+  progressLabel = "Monthly Request Limit",
+  progressValue = 45.23,
+  usedLabel = "Used",
+  usedValue = "45,231",
+  remainingLabel = "Remaining",
+  remainingValue = "54,769",
+  buttonText = "Upgrade Plan",
   onAction,
-  disabled = false,
+  planOptions = ["Pro", "Enterprise", "Basic"],
+  defaultPlan = "Pro",
 }: ApiUsageWidgetProps) {
+  const [selectedPlan, setSelectedPlan] = React.useState(defaultPlan);
+
   return (
-    <div className="flex h-full w-full rounded-[28px] bg-muted p-1.5 sm:rounded-[34px] sm:p-2">
-      <Card className="flex h-full w-full gap-0 rounded-[24px] border-border/60 bg-card/80 py-0 shadow-[0_0_28px_-18px_oklch(0.78_0.18_145)] ring-0 transition-colors hover:border-primary/40 sm:rounded-[28px]">
-        <CardHeader className="gap-2 px-4 pt-5 pb-0 sm:px-5">
-          <CardTitle className="min-w-0 truncate text-sm font-semibold text-muted-foreground">
-            {title}
-          </CardTitle>
-          <CardAction>
-            <Badge className="rounded-full bg-primary px-3 py-1 text-xs font-black text-primary-foreground shadow-[0px_0px_4px_1px_rgba(0,0,0,0.05),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_1px_0px_0px_rgba(255,255,255,0.35)]">
-              {badgeText}
-            </Badge>
-          </CardAction>
-        </CardHeader>
-
-        <CardContent className="flex min-h-0 flex-1 flex-col px-4 py-0 sm:px-5">
-          <div className="mt-3 text-3xl font-black tracking-tight text-foreground tabular-nums sm:text-4xl">
-            {durationLabel}
+    <div className="bg-muted flex w-full max-w-sm rounded-[40px] p-2">
+      <Card className="bg-card/80 w-full rounded-[32px] ring-0">
+        <CardContent className="px-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-muted-foreground text-sm font-normal">
+              {title}
+            </h3>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5 rounded-md border-none px-3 py-2 text-xs font-medium tracking-wide shadow-[0px_0px_4px_1px_rgba(0,0,0,0.05),inset_0_0px_4px_1px_rgba(255,255,255,0.45),inset_0_1px_0px_0px_rgba(255,255,255,0.35)] focus-visible:ring-0 focus-visible:ring-offset-0"
+                >
+                  {selectedPlan}{" "}
+                  <FaChevronDown className="h-3 w-3 opacity-70" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="bg-background/20 rounded-xl border shadow-sm ring-0 backdrop-blur-2xl"
+              >
+                {planOptions.map((plan) => (
+                  <DropdownMenuItem
+                    key={plan}
+                    onClick={() => setSelectedPlan(plan)}
+                    className="cursor-pointer rounded-md bg-transparent text-xs font-medium"
+                  >
+                    {plan}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
-          <Progress
-            value={progressValue}
-            aria-label={`${title} round length`}
-            className="mt-3 h-1.5 w-full bg-muted **:data-[slot=progress-indicator]:shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_0_rgba(0,0,0,0.2),0px_4px_24px_0px_rgba(0,0,0,0.1),0px_2px_12px_0px_rgba(0,0,0,0.1)]"
-          />
-
-          <div className="mt-3 flex min-w-0 flex-col gap-1 text-xs leading-relaxed sm:text-sm">
-            <p className="truncate text-muted-foreground">{baseRoundLabel}</p>
-            <p className="font-black uppercase text-primary">{freeLabel}</p>
-            <p className="line-clamp-2 text-muted-foreground">{description}</p>
+          <div>
+            <div className="text-foreground text-3xl font-semibold tracking-tight tabular-nums">
+              {limitValue}
+            </div>
+          </div>
+          <div className="mt-2 space-y-1">
+            <p className="text-muted-foreground text-sm font-normal">
+              {progressLabel}
+            </p>
+            <Progress
+              value={progressValue}
+              className="bg-muted h-2 w-full **:data-[slot=progress-indicator]:shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_0_rgba(0,0,0,0.2),0px_4px_24px_0px_rgba(0,0,0,0.1),0px_2px_12px_0px_rgba(0,0,0,0.1)]"
+            />
           </div>
 
-          <ul className="mt-4 flex flex-col gap-1.5 text-sm">
-            {features.map((feature) => (
-              <li key={feature} className="flex min-w-0 items-center gap-2 text-muted-foreground">
-                <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-primary" />
-                <span className="truncate">{feature}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-3 flex items-center justify-between text-xs">
+            <div className="flex flex-col leading-tight">
+              <span className="text-muted-foreground">{usedLabel}</span>
+              <span className="text-foreground text-base font-semibold">
+                {usedValue}
+              </span>
+            </div>
+            <div className="flex flex-col items-end leading-tight">
+              <span className="text-muted-foreground">{remainingLabel}</span>
+              <span className="text-foreground text-base font-semibold">
+                {remainingValue}
+              </span>
+            </div>
+          </div>
+          <div className="pt-2">
+            <Button
+              onClick={onAction}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 w-full rounded-full text-base font-semibold shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_0_rgba(0,0,0,0.2),0px_4px_24px_0px_rgba(0,0,0,0.1),0px_2px_12px_0px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_-2px_4px_0_rgba(0,0,0,0.2),inset_0_2px_4px_0_rgba(255,255,255,0.5)]"
+              size="lg"
+            >
+              {buttonText}
+            </Button>
+          </div>
         </CardContent>
-
-        <CardFooter className="mt-auto px-4 pt-4 pb-5 sm:px-5">
-          <Button
-            type="button"
-            onClick={onAction}
-            disabled={disabled}
-            aria-label={`${buttonText} for ${title} at ${price}`}
-            className="h-12 w-full rounded-full bg-primary text-base font-black text-primary-foreground shadow-[inset_0_2px_4px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_0_rgba(0,0,0,0.2),0px_4px_24px_0px_rgba(0,0,0,0.1),0px_2px_12px_0px_rgba(0,0,0,0.1)] hover:bg-primary/90 dark:shadow-[inset_0_-2px_4px_0_rgba(0,0,0,0.2),inset_0_2px_4px_0_rgba(255,255,255,0.5)]"
-            size="lg"
-          >
-            {buttonText} {price}
-          </Button>
-        </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
